@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Input max Length </title>
+  </head>
+  <body>
+
+
+    <div class="field required">
+
+        <h4 class="panel-title">
+            <?php echo __('Type Description','w3i'); ?>
+        </h4>
+
+        <textarea name="type_description" data-max-char="10" placeholder="Type Description">asdasd</textarea>
+        <p class="remainig">
+            <span>10</span>
+            characters lef
+        </p>
+
+    </div>
+
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+    <script>
+
+      $(document).ready(function() {
+
+        $('[data-max-char]').each(function(index, el) {
+
+  				let elValLength = $(el).val().length,
+  					  elSet = $(el).attr('data-max-char');
+
+  				$(el).siblings('.remainig').find('span').text( parseInt( elSet - elValLength ) );
+
+  				$(el).keyup(function(e) {
+
+  				    var elVal = $(this).val(),
+  				        elLenght = elVal.length,
+  				        set = $(this).attr('data-max-char'),
+  				        remain = parseInt(set - elLenght);
+
+  				    if ( remain > -1 ) {
+
+  				    	$(el).siblings('.remainig').find('span').text( remain );
+
+  				    };
+
+  				    if ( remain <= -1 ) {
+
+  				        $(this).val(( elVal ).substring( 0, set ));
+
+  				    }
+  				})
+
+  			});
+
+      });
+
+    </script>
+
+
+  </body>
+</html>
